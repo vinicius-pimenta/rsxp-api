@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "node ace test"
+    "test": "nyc node ace test"
   },
   "keywords": [
     "adonisjs",
@@ -36,6 +36,7 @@
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-prettier": "^3.1.2",
+    "nyc": "^15.0.0",
     "prettier": "^2.0.2",
     "sqlite3": "^4.1.1"
   },

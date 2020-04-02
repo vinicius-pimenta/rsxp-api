@@ -9,3 +9,6 @@ tmp
 
 # The development sqlite file
 database/*.sqlite
+
+# Check code coverage with istanbul.js/nyc
+.nyc_output/
