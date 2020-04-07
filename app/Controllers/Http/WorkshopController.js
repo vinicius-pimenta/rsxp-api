@@ -2,8 +2,11 @@
 const Workshop = use('App/Models/Workshop');
 
 class WorkshopController {
-  async index() {
+  async index({ request }) {
+    const section = request.input('section', 1);
+
     const workshops = await Workshop.query()
+      .where('section', section)
       .with('user', (builder) => builder.select(['id', 'name', 'avatar']))
       .fetch();
 
@@ -21,7 +24,13 @@ class WorkshopController {
   }
 
   async store({ request, response }) {
-    const data = request.only(['title', 'description', 'user_id', 'section']);
+    const data = request.only([
+      'title',
+      'color',
+      'description',
+      'user_id',
+      'section',
+    ]);
 
     const workshop = await Workshop.create(data);
 

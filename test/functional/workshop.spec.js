@@ -30,11 +30,17 @@ test('it should be able to create workshops', async ({ assert, client }) => {
 
 test('it should be able to list workshops', async ({ assert, client }) => {
   const user = await Factory.model('App/Models/User').create();
-  const workshop = await Factory.model('App/Models/Workshop').make();
+  const workshop = await Factory.model('App/Models/Workshop').make({
+    section: 2,
+  });
 
   await user.workshops().save(workshop);
 
-  const response = await client.get('/workshops').loginVia(user, 'jwt').end();
+  const response = await client
+    .get('/workshops')
+    .query({ section: 2 })
+    .loginVia(user, 'jwt')
+    .end();
 
   response.assertStatus(200);
 
