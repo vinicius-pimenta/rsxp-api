@@ -23,6 +23,7 @@ Route.post('/reset', 'ResetPasswordController.store').validator('Reset');
 Route.group(() => {
   Route.put('/profile', 'ProfileController.update').validator('Profile');
 
+  // TODO: Change rout group to resource
   Route.get('/workshops', 'WorkshopController.index');
   Route.get('/workshops/:id', 'WorkshopController.show');
 
@@ -32,4 +33,14 @@ Route.group(() => {
   );
 
   Route.delete('/workshops/:id', 'WorkshopController.destroy');
+
+  Route.post(
+    '/workshops/:workshop_id/subscriptions',
+    'SubscriptionController.store'
+  );
+
+  Route.delete(
+    '/workshops/:workshop_id/subscriptions',
+    'SubscriptionController.destroy'
+  );
 }).middleware('auth');

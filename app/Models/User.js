@@ -29,6 +29,12 @@ class User extends Model {
     return this.hasMany('App/Models/Workshop');
   }
 
+  subscriptions() {
+    return this.belongsToMany('App/Models/Workshop')
+      .pivotTable('subscriptions')
+      .withTimestamps();
+  }
+
   getAvatarUrl({ avatar }) {
     return `${Env.get('APP_URL')}/files/${avatar || 'placeholder.jpeg'}`;
   }
